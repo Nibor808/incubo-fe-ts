@@ -1,6 +1,7 @@
 .contact {
   .header-container {
     padding: 0;
+
     p:last-of-type {
       margin-bottom: 30px;
     }
@@ -14,7 +15,7 @@
       border-right: 10px solid $yellow;
     }
 
-    form {
+    #contact-form {
       button {
         box-shadow: $boxShadowSm;
         background: $blue;

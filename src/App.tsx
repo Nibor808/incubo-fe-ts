@@ -8,7 +8,7 @@ import Modal from './components/Modal';
 
 const App: React.FC = () => {
   const logoImg = document.getElementById('logo-img');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [event, setEvent] = useState<React.MouseEvent<
     HTMLImageElement,
     MouseEvent
@@ -78,9 +78,7 @@ const App: React.FC = () => {
       <section key='a3' className='landing container'>
         <article className='about'>
           <div className='about-container'>
-            <About
-            // toContact={toContact}
-            />
+            <About />
           </div>
         </article>
 

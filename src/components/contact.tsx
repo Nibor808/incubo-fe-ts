@@ -15,7 +15,7 @@ type ResponseProps = {
 const Contact = () => {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const ERROR_BORDER = '1px solid rgb(211, 0, 57)';
-  const emailForm = document.getElementById('email-form');
+  const contactForm = document.getElementById('contact-form');
 
   const [name, setName] = useState({});
   const [email, setEmail] = useState('');
@@ -94,7 +94,7 @@ const Contact = () => {
         clearFormValues();
 
         setTimeout(() => {
-          emailForm.reset();
+          if (contactForm instanceof HTMLFormElement) contactForm.reset();
           setResponse({
             data: {
               Type: '',
@@ -114,6 +114,8 @@ const Contact = () => {
 
       return <p className={klass}>{response.data.Message}</p>;
     }
+
+    return null;
   };
 
   const clearError = () => {
@@ -131,7 +133,10 @@ const Contact = () => {
     setMessage('');
   };
 
-  const handleChange = (ev: React.ChangeEvent, type: string) => {
+  const handleChange = (
+    ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ) => {
     if (type === 'name') setName(ev.target.value);
     else if (type === 'email') setEmail(ev.target.value);
     else if (type === 'message') setMessage(ev.target.value);

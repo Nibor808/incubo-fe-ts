@@ -2,14 +2,14 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import React from 'react';
 
 interface ContactFormProps {
-  sendMail: () => void;
+  sendMail: (event: React.FormEvent<HTMLFormElement>) => void;
   onChange: (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     name: string
   ) => void;
   errors: errors;
   borders: borders;
-  showResponse: () => string;
+  showResponse: () => JSX.Element | null;
   recaptchaRef:
     | string
     | ((instance: ReCAPTCHA | null) => void)
@@ -45,13 +45,15 @@ const ContactForm = (props: ContactFormProps) => {
   } = props;
 
   return (
-    <div className='row' data-testid='email-form'>
+    <div className='row' data-testid='contact-form'>
       <div className='col-1 col-md-1 sidebar' />
 
       <div className='col-sm-8 col-lg-6'>
-        <form onSubmit={sendMail} method='post' id='email-form'>
-          <div className='form-group'>
-            <label htmlFor='name'>Name</label>
+        <form onSubmit={sendMail} method='post' id='contact-form'>
+          <div className='mb-3'>
+            <label htmlFor='name' className='form-label'>
+              Name
+            </label>
             <span className='error'>{errors.nameError}</span>
             <input
               type='text'
@@ -63,8 +65,10 @@ const ContactForm = (props: ContactFormProps) => {
             />
           </div>
 
-          <div className='form-group'>
-            <label htmlFor='email'>Email</label>
+          <div className='mb-3'>
+            <label htmlFor='email' className='form-label'>
+              Email
+            </label>
             <span className='error'>{errors.emailError}</span>
             <input
               type='email'
@@ -74,11 +78,15 @@ const ContactForm = (props: ContactFormProps) => {
               onChange={ev => onChange(ev, 'name')}
               style={{ border: borders.emailErrorBorder }}
             />
-            <small>Your information will never be shared. Full stop.</small>
+            <small>
+              Your information will never be stored nor shared. Full stop.
+            </small>
           </div>
 
-          <div className='form-group'>
-            <label htmlFor='description'>Message</label>
+          <div className='mb-3'>
+            <label htmlFor='description' className='form-label'>
+              Message
+            </label>
             <span className='error'>{errors.messageError}</span>
             <textarea
               rows={3}
