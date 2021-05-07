@@ -1,0 +1,51 @@
+header {
+  .navbar {
+    background: rgba(255, 255, 255, 0.95);
+
+    .navbar-brand {
+      padding: 0;
+      margin: 8px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .container {
+      padding: 0;
+
+      .navbar-nav > .nav-item {
+        margin-left: 80px;
+
+        button.nav-link {
+          padding: 0;
+          border: none;
+          background: none;
+          outline: none;
+          padding: 0 10px;
+          position: relative;
+          &:before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 2px;
+            bottom: 0;
+            left: 10px;
+            background: $green;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: 0.25s linear;
+          }
+          &:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+          }
+        }
+      }
+
+      .navbar-toggler:focus {
+        outline: none;
+      }
+    }
+  }
+}
