@@ -12,10 +12,10 @@
     flex-direction: column;
 
     .sidebar {
-      border-right: 10px solid $yellow;
+      border-right: 10px solid $blue;
     }
 
-    #contact-form {
+    form {
       button {
         box-shadow: $boxShadowSm;
         background: $blue;
@@ -29,8 +29,7 @@
 
       .error {
         color: $red;
-        margin-left: 20px;
-        font-size: 14px;
+        margin-left: 10px;
       }
 
       .send-div {

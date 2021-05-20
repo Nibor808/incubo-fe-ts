@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../styles/images/incubo_logo.png';
 import linkedIn from '../styles/images/linkedin.jpg';
-import { MyLink } from '../utils/my_link';
+import { MyLink } from './MyLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,15 +16,12 @@ const Header = (props: HeaderProps) => {
   const [modeText, setModeText] = useState<JSX.Element>(
     <FontAwesomeIcon icon={faSun} />
   );
-  const topRef = useRef<HTMLLinkElement | null>(null);
 
   const toTop = (ev: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     ev.preventDefault();
 
     setTimeout(() => {
-      topRef.current?.scrollIntoView({
-        behavior: 'smooth',
-      });
+      window.scrollTo(0, 0);
     }, 50);
   };
 
@@ -39,7 +36,7 @@ const Header = (props: HeaderProps) => {
   }, [darkMode]);
 
   return (
-    <header ref={topRef}>
+    <header>
       <nav className='navbar navbar-expand-lg fixed-top navbar-light'>
         <div className='container'>
           <img

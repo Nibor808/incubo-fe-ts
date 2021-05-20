@@ -20,9 +20,18 @@ type MailInfo = {
   recaptchaValue: string;
 };
 
-type FormError = {
+export type FormError = {
   type: string;
   msg: string;
+};
+
+type Errors = {
+  nameError: string;
+  nameErrorBorder: string;
+  emailError: string;
+  emailErrorBorder: string;
+  messageError: string;
+  messageErrorBorder: string;
 };
 
 const Contact = () => {
@@ -38,7 +47,7 @@ const Contact = () => {
   const [response, setResponse] = useState<Response>({
     data: { Message: '', Type: '' },
   });
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<Errors>({
     nameError: '',
     nameErrorBorder: '',
     emailError: '',
@@ -52,27 +61,27 @@ const Contact = () => {
     ev.preventDefault();
 
     const recaptchaValue = recaptchaRef.current?.getValue();
-    const formErrors: FormError | null = validateForm(name, email, message);
+    const formError: FormError = validateForm(name, email, message);
 
-    if (formErrors) {
-      switch (formErrors.type) {
+    if (formError) {
+      switch (formError.type) {
         case 'name':
           return setErrors({
             ...errors,
             nameErrorBorder: ERROR_BORDER,
-            nameError: formErrors.msg,
+            nameError: formError.msg,
           });
         case 'email':
           return setErrors({
             ...errors,
             emailErrorBorder: ERROR_BORDER,
-            emailError: formErrors.msg,
+            emailError: formError.msg,
           });
         case 'message':
           return setErrors({
             ...errors,
             messageErrorBorder: ERROR_BORDER,
-            messageError: formErrors.msg,
+            messageError: formError.msg,
           });
         default:
         // Do Nothing

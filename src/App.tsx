@@ -3,11 +3,12 @@ import Header from './components/Header';
 import About from './components/About';
 import Contact from './components/Contact';
 import PortfolioList from './components/PortfolioList';
-import { list2016, list2017 } from './utils/portfolio_item_info';
+import { list2016 } from './utils/list_2016';
+import { list2017 } from './utils/list_2017';
+import { list2020 } from './utils/list_2020';
 import Modal from './components/Modal';
 
 const App: React.FC = () => {
-  const logoImg = document.getElementById('logo-img');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [event, setEvent] = useState<React.MouseEvent<
     HTMLImageElement,
@@ -17,18 +18,17 @@ const App: React.FC = () => {
   const contactRef = useRef<HTMLLinkElement | null>(null);
 
   window.onscroll = () => {
-    if (logoImg) {
-      if (
-        document.body.scrollTop > 30 ||
-        document.documentElement.scrollTop > 30
-      ) {
-        logoImg.style.height = '80px';
-        logoImg.style.width = '185px';
-        logoImg.style.transition = '0.4s';
-      } else {
-        logoImg.style.height = '110px';
-        logoImg.style.width = '258px';
-      }
+    const logoImg = document.getElementById('logo-img') as HTMLImageElement;
+    if (
+      document.body.scrollTop > 30 ||
+      document.documentElement.scrollTop > 30
+    ) {
+      logoImg.style.height = '80px';
+      logoImg.style.width = '185px';
+      logoImg.style.transition = '0.4s';
+    } else {
+      logoImg.style.height = '110px';
+      logoImg.style.width = '258px';
     }
   };
 
@@ -100,6 +100,13 @@ const App: React.FC = () => {
           </div>
 
           <div className='portfolio-container'>
+            <PortfolioList
+              year='2020'
+              list={list2020}
+              sideBarName='sidebar2020'
+              handleClick={handleClick}
+            />
+
             <PortfolioList
               year='2017'
               list={list2017}
