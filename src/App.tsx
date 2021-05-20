@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import Header from './components/header';
-import About from './components/about';
-import Contact from './components/contact';
-import PortfolioList from './components/portfolio_list';
+import Header from './components/Header';
+import About from './components/About';
+import Contact from './components/Contact';
+import PortfolioList from './components/PortfolioList';
 import { list2016, list2017 } from './utils/portfolio_item_info';
 import Modal from './components/Modal';
 

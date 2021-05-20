@@ -2,13 +2,12 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import React from 'react';
 
 interface ContactFormProps {
-  sendMail: (event: React.FormEvent<HTMLFormElement>) => void;
+  validateValues: (event: React.FormEvent<HTMLFormElement>) => void;
   onChange: (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     name: string
   ) => void;
   errors: errors;
-  borders: borders;
   showResponse: () => JSX.Element | null;
   recaptchaRef:
     | string
@@ -20,24 +19,20 @@ interface ContactFormProps {
   buttonClicked: boolean;
 }
 
-type borders = {
-  nameErrorBorder: string;
-  emailErrorBorder: string;
-  messageErrorBorder: string;
-};
-
 type errors = {
   nameError: string;
+  nameErrorBorder: string;
   emailError: string;
+  emailErrorBorder: string;
   messageError: string;
+  messageErrorBorder: string;
 };
 
 const ContactForm = (props: ContactFormProps) => {
   const {
-    sendMail,
+    validateValues,
     onChange,
     errors,
-    borders,
     showResponse,
     recaptchaRef,
     buttonText,
@@ -49,7 +44,7 @@ const ContactForm = (props: ContactFormProps) => {
       <div className='col-1 col-md-1 sidebar' />
 
       <div className='col-sm-8 col-lg-6'>
-        <form onSubmit={sendMail} method='post' id='contact-form'>
+        <form onSubmit={validateValues} method='post' id='contact-form'>
           <div className='mb-3'>
             <label htmlFor='name' className='form-label'>
               Name
@@ -61,7 +56,7 @@ const ContactForm = (props: ContactFormProps) => {
               id='name'
               name='name'
               onChange={ev => onChange(ev, 'name')}
-              style={{ border: borders.nameErrorBorder }}
+              style={{ border: errors.nameErrorBorder }}
             />
           </div>
 
@@ -75,8 +70,8 @@ const ContactForm = (props: ContactFormProps) => {
               className='form-control'
               id='email'
               name='email'
-              onChange={ev => onChange(ev, 'name')}
-              style={{ border: borders.emailErrorBorder }}
+              onChange={ev => onChange(ev, 'email')}
+              style={{ border: errors.emailErrorBorder }}
             />
             <small>
               Your information will never be stored nor shared. Full stop.
@@ -93,8 +88,8 @@ const ContactForm = (props: ContactFormProps) => {
               className='form-control'
               id='message'
               name='message'
-              onChange={ev => onChange(ev, 'name')}
-              style={{ border: borders.messageErrorBorder }}
+              onChange={ev => onChange(ev, 'message')}
+              style={{ border: errors.messageErrorBorder }}
             />
           </div>
 
