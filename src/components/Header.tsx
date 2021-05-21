@@ -5,10 +5,10 @@ import { MyLink } from './MyLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
-interface HeaderProps {
+type HeaderProps = {
   toPortfolio: (ev: React.MouseEvent<HTMLButtonElement>) => void;
   toContact: (ev: React.MouseEvent<HTMLButtonElement>) => void;
-}
+};
 
 const Header = (props: HeaderProps) => {
   const { toPortfolio, toContact } = props;

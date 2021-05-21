@@ -1,4 +1,3 @@
-import React from 'react';
 import odfFullThumb from '../styles/images/odf-full-thumb.jpg';
 import odfFull from '../styles/images/odf-full.jpg';
 import odfFormsThumb from '../styles/images/odf-forms-thumb.jpg';
@@ -9,8 +8,9 @@ import jesstech from '../styles/images/jesstech.jpg';
 import lakeshore from '../styles/images/lakeshore.jpg';
 import incuboOld from '../styles/images/incubo_old.jpg';
 import { MyLink } from '../components/MyLink';
+import { Item } from '../components/PortfolioItem';
 
-export const list2017 = [
+export const list2017: Item[] = [
   {
     title: 'Online Divorce Forms',
     text: () => {

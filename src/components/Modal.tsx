@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-export interface ModalProps {
+export type ModalProps = {
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
   headerText: string | undefined;
   srcText: string | undefined;
-}
+};
 
 const ModalStyle = {
   overlay: {

@@ -1,13 +1,13 @@
 import React, { ErrorInfo, ReactNode } from 'react';
 
-interface EBProps {
+type EBProps = {
   children: ReactNode;
-}
+};
 
-interface EBState {
+type EBState = {
   error: Error | null;
   errorInfo: ErrorInfo | null;
-}
+};
 
 class ErrorBoundary extends React.Component<EBProps, EBState> {
   public state: EBState = { error: null, errorInfo: null };

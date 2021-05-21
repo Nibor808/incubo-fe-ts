@@ -4,9 +4,9 @@ import plus3Calc from '../styles/images/plus3-calc.jpg';
 import plus3Curr from '../styles/images/plus3-curr.jpg';
 import plus3Units from '../styles/images/plus3-units.jpg';
 import { MyLink } from '../components/MyLink';
-import React from 'react';
+import { Item } from '../components/PortfolioItem';
 
-export const list2016 = [
+export const list2016: Item[] = [
   {
     title: '+3',
     github: (

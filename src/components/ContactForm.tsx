@@ -1,7 +1,7 @@
 import ReCAPTCHA from 'react-google-recaptcha';
 import React from 'react';
 
-interface ContactFormProps {
+type ContactFormProps = {
   validateValues: (event: React.FormEvent<HTMLFormElement>) => void;
   onChange: (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -17,7 +17,7 @@ interface ContactFormProps {
     | undefined;
   buttonText: string;
   buttonClicked: boolean;
-}
+};
 
 type errors = {
   nameError: string;
