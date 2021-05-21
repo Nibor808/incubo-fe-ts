@@ -211,6 +211,10 @@ a.git-link {
 
       .about-container {
         padding: 0;
+
+        pre {
+          font-size: 0.7em;
+        }
       }
     }
   }
@@ -235,6 +239,14 @@ a.git-link {
             margin-top: 10px;
           }
         }
+      }
+    }
+  }
+
+  .about {
+    .about-container {
+      pre {
+        font-size: 0.8em;
       }
     }
   }
