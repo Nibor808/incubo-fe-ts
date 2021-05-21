@@ -40,6 +40,10 @@ body {
   height: auto !important;
 }
 
+.container {
+  max-width: 1140px;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -56,6 +60,7 @@ a:not(.img-link) {
   background: none;
   outline: none;
   position: relative;
+  text-decoration: none;
   &:before {
     content: '';
     position: absolute;
@@ -74,14 +79,6 @@ a:not(.img-link) {
   }
   &:hover {
     text-decoration: none;
-  }
-}
-
-a.git-link {
-  padding-left: 20px;
-  &:before {
-    left: 20px;
-    width: 50%;
   }
 }
 
