@@ -2,7 +2,7 @@
 $icon-font-path: '/fonts/';
 $white: rgb(255, 255, 255);
 $blue: rgb(102, 133, 230);
-$lightBlue: rgb(135,158,229);
+$lightBlue: rgb(135, 158, 229);
 $green: rgb(135, 237, 137);
 $yellow: rgb(238, 219, 81);
 $red: rgb(211, 0, 57);
@@ -65,11 +65,11 @@ h6 {
   -webkit-font-smoothing: antialiased;
 }
 
-#dark-light-toggle:focus ~ .custom-control-label::before {
+#dark-light-toggle:focus {
   box-shadow: none;
 }
 
-#dark-light-toggle:checked ~ .custom-control-label::before {
+#dark-light-toggle:checked {
   border-color: transparent;
   background-color: $green;
 }
@@ -97,6 +97,14 @@ h6 {
   a,
   button.nav-link {
     color: $lightBlue !important;
+  }
+
+  .contact-container {
+    form {
+      .error {
+        color: rgb(253, 131, 109);
+      }
+    }
   }
 }
 
