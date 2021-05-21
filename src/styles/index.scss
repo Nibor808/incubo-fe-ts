@@ -110,6 +110,7 @@ h6 {
   body,
   .container-fluid {
     background: $darkBackground;
+    transition: background 0.5s;
   }
 
   h1,
@@ -143,6 +144,7 @@ h6 {
 body,
 .container-fluid {
   background: $white;
+  transition: background 0.5s;
 }
 
 h1,
