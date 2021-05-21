@@ -30,18 +30,6 @@ export const list2016 = [
           alt='app store badge'
         />
       </a>
-      // <MyLink
-      //   title={
-      //     <img
-      //       src={appStoreBadge}
-      //       id='badge'
-      //       className='img-fluid'
-      //       alt='app store badge'
-      //     />
-      //   }
-      //   href='https://itunes.apple.com/ca/app/+3/id1095135903?mt=8'
-      //   klass='img-link'
-      // />
     ),
     text: () => {
       return [

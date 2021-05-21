@@ -11,7 +11,7 @@ export type Item = {
   badgeIcon?: JSX.Element | undefined;
   github?: Link | string | Element | JSX.Element;
   text?: () => JSX.Element[] | JSX.Element;
-  image?: (handleClick?: React.FormEventHandler) => Element | JSX.Element;
+  image?: (handleClick?: React.MouseEventHandler) => Element | JSX.Element;
 };
 
 const PortfolioItem: React.FC<PortfolioItemProps> = ({

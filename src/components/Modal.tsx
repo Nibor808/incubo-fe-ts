@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   return (
     <ReactModal
-      // appElement={document.getElementById('root')}
+      appElement={document.getElementById('root') as HTMLElement}
       isOpen={isOpen}
       onRequestClose={() => setIsOpen(false)}
       style={ModalStyle}

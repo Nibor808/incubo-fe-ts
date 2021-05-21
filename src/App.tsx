@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from './components/Header';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -10,25 +10,29 @@ import Modal from './components/Modal';
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [event, setEvent] = useState<React.MouseEvent<
-    HTMLImageElement,
-    MouseEvent
-  > | null>(null);
+  const [event, setEvent] =
+    useState<React.MouseEvent<HTMLImageElement, MouseEvent> | null>(null);
   const portfolioRef = useRef<HTMLLinkElement | null>(null);
   const contactRef = useRef<HTMLLinkElement | null>(null);
+  const [logoImg, setLogoImg] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setLogoImg(document.getElementById('logo-img'));
+  }, []);
 
   window.onscroll = () => {
-    const logoImg = document.getElementById('logo-img') as HTMLImageElement;
-    if (
-      document.body.scrollTop > 30 ||
-      document.documentElement.scrollTop > 30
-    ) {
-      logoImg.style.height = '80px';
-      logoImg.style.width = '185px';
-      logoImg.style.transition = '0.4s';
-    } else {
-      logoImg.style.height = '110px';
-      logoImg.style.width = '258px';
+    if (logoImg) {
+      if (
+        document.body.scrollTop > 30 ||
+        document.documentElement.scrollTop > 30
+      ) {
+        logoImg.style.height = '80px';
+        logoImg.style.width = '185px';
+        logoImg.style.transition = '0.4s';
+      } else {
+        logoImg.style.height = '110px';
+        logoImg.style.width = '258px';
+      }
     }
   };
 
@@ -59,13 +63,15 @@ const App: React.FC = () => {
   };
 
   const showModal = (): JSX.Element | null => {
+    const target = event?.target as HTMLImageElement;
+
     return isOpen ? (
       <span key='a1'>
         <Modal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          headerText={event?.currentTarget.dataset.text}
-          srcText={event?.currentTarget.alt}
+          srcText={target?.dataset.text} // using dataset.text to hold path to full size image
+          headerText={target?.alt}
         />
       </span>
     ) : null;
