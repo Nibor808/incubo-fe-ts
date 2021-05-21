@@ -74,7 +74,7 @@ const Header = (props: HeaderProps) => {
               </li>
             </ul>
 
-            <div className='d-flex ms-auto'>
+            <div className='d-flex ms-auto align-items-center'>
               <div className='linkedin'>
                 <MyLink
                   title={<img src={linkedIn} alt='Robin Erickson linkedIn' />}

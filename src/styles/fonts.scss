@@ -8,6 +8,10 @@
   src: url('./fonts/Quicksand-Regular.ttf');
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: quicksand, sans-serif;
   letter-spacing: 0.5px;
@@ -17,28 +21,26 @@ a,
 button.nav-link {
   font-family: roboto-lt, sans-serif;
   letter-spacing: 0.75px;
-  font-size: 20px;
 }
 
+a,
+button.nav-link,
 p {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 button,
-form > .form-group > label {
-  font-size: 18px;
+a.git-link,
+.form-label {
+  font-size: 1.125em;
 }
 
 .sidebar {
   p {
-    font-size: 22px;
+    font-size: 1.375em;
   }
 }
 
 pre {
-  font-size: 0.9em;
-}
-
-a.git-link {
-  font-size: 18px;
+  font-size: 1em;
 }
