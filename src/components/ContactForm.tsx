@@ -92,6 +92,11 @@ const ContactForm = (props: ContactFormProps) => {
               style={{ border: errors.messageErrorBorder }}
             />
           </div>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            size='normal'
+            sitekey='6LcNF-oUAAAAAEMyOzk5t1xUwJJgXSoVJfggilv2'
+          />
 
           <div className='send-div'>
             <button type='submit' disabled={buttonClicked}>
@@ -100,12 +105,6 @@ const ContactForm = (props: ContactFormProps) => {
 
             {showResponse()}
           </div>
-
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            size='normal'
-            sitekey='6LcNF-oUAAAAAEMyOzk5t1xUwJJgXSoVJfggilv2'
-          />
         </form>
       </div>
     </div>
