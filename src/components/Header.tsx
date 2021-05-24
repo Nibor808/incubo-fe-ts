@@ -13,7 +13,7 @@ type HeaderProps = {
 const Header = (props: HeaderProps) => {
   const { toPortfolio, toContact } = props;
   const [darkMode, setDarkMode] = useState<boolean>(false);
-  const [modeText, setModeText] = useState<JSX.Element>(
+  const [modeIcon, setModeIcon] = useState<JSX.Element>(
     <FontAwesomeIcon icon={faSun} />
   );
 
@@ -28,10 +28,10 @@ const Header = (props: HeaderProps) => {
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
-      setModeText(<FontAwesomeIcon icon={faSun} />);
+      setModeIcon(<FontAwesomeIcon icon={faSun} />);
     } else {
       document.body.classList.remove('dark-mode');
-      setModeText(<FontAwesomeIcon icon={faMoon} />);
+      setModeIcon(<FontAwesomeIcon icon={faMoon} />);
     }
   }, [darkMode]);
 
@@ -91,10 +91,10 @@ const Header = (props: HeaderProps) => {
                   onClick={() => setDarkMode(!darkMode)}
                 />
                 <label
-                  className='form-check-label mode'
+                  className='form-check-label mode-icon'
                   htmlFor='dark-light-toggle'
                 >
-                  {modeText}
+                  {modeIcon}
                 </label>
               </div>
             </div>

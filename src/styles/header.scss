@@ -20,30 +20,6 @@ header {
 
       .navbar-nav > .nav-item {
         margin-left: 80px;
-
-        button.nav-link {
-          border: none;
-          background: none;
-          outline: none;
-          padding: 0 10px;
-          position: relative;
-          &:before {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 2px;
-            bottom: 0;
-            left: 10px;
-            background: $green;
-            visibility: hidden;
-            transform: scaleX(0);
-            transition: 0.25s linear;
-          }
-          &:hover:before {
-            visibility: visible;
-            transform: scaleX(1);
-          }
-        }
       }
     }
 

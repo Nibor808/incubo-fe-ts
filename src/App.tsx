@@ -10,8 +10,10 @@ import Modal from './components/Modal';
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [event, setEvent] =
-    useState<React.MouseEvent<HTMLImageElement, MouseEvent> | null>(null);
+  const [event, setEvent] = useState<React.MouseEvent<
+    HTMLImageElement,
+    MouseEvent
+  > | null>(null);
   const portfolioRef = useRef<HTMLLinkElement | null>(null);
   const contactRef = useRef<HTMLLinkElement | null>(null);
   const [logoImg, setLogoImg] = useState<HTMLElement | null>(null);

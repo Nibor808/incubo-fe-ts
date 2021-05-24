@@ -16,39 +16,10 @@
     }
 
     form {
-      button {
-        box-shadow: $boxShadowSm;
-        background: $blue;
-        color: $white;
-        padding: 5px 20px;
-        border-radius: 0;
-        border: none;
-        margin-top: 10px;
-        outline: none;
-
-        &:hover {
-          background: $lightBlue;
-        }
-
-        &:active {
-          background: $darkBlue;
-          box-shadow: none;
-        }
-      }
-
-      .error {
-        color: $red;
-        margin-left: 10px;
-      }
-
       .send-div {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
-
-        .success {
-          color: $blue;
-        }
 
         p {
           margin-bottom: 0;

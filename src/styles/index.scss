@@ -1,5 +1,8 @@
 /* -------------- GLOBALS -------------- */
 $icon-font-path: '/fonts/';
+
+$borderRadius: 3px;
+
 $white: rgb(255, 255, 255);
 $blue: rgb(102, 133, 230);
 $darkBlue: rgb(78, 105, 184);
@@ -7,14 +10,19 @@ $lightBlue: rgb(135, 158, 229);
 $green: rgb(135, 237, 137);
 $yellow: rgb(238, 219, 81);
 $red: rgb(211, 0, 57);
-$grey: rgb(225, 225, 225);
+
 $fontColor: rgb(51, 51, 51);
 $lightFontColor: rgb(220, 224, 228);
+
 $darkBackground: rgb(53, 58, 61);
+
 $boxShadowSm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 $boxShadowMed: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-$glow: 0 0 8px $green;
-$borderRadius: 0;
+
+$input-grey: rgba(204, 204, 204, 1);
+$input-gradient-white: rgba(247, 247, 248, 1);
+$input-inset-shadow1: rgba(0, 0, 0, 0.2);
+$input-inset-shadow2: rgba(0, 0, 0, 0.05);
 
 @import './custom_bootstrap';
 @import './fonts';
@@ -22,6 +30,7 @@ $borderRadius: 0;
 @import './about';
 @import './portfolio';
 @import './contact';
+@import './buttons_inputs';
 
 /* -------------- FORMATTING -------------- */
 html,
@@ -53,34 +62,6 @@ ul {
 .sidebar {
   display: flex;
   justify-content: flex-start;
-}
-
-a:not(.img-link) {
-  padding: 0;
-  border: none;
-  background: none;
-  outline: none;
-  position: relative;
-  text-decoration: none;
-  &:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background: $green;
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: 0.25s linear;
-  }
-  &:hover:before {
-    visibility: visible;
-    transform: scaleX(1);
-  }
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 /* -------------- COLORS -------------- */
@@ -118,10 +99,17 @@ h6 {
   h5,
   h6,
   p,
-  label:not(.mode),
+  label:not(.mode-icon),
   pre,
   small,
   ul > li {
+    color: $lightFontColor;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea.form-control {
+    background: $darkBackground;
     color: $lightFontColor;
   }
 
@@ -130,12 +118,8 @@ h6 {
     color: $lightBlue !important;
   }
 
-  .contact-container {
-    form {
-      .error {
-        color: rgb(253, 131, 109);
-      }
-    }
+  .error {
+    color: rgb(253, 131, 109);
   }
 }
 
@@ -162,6 +146,15 @@ ul > li {
 a,
 button.nav-link {
   color: $blue !important;
+}
+
+.error {
+  color: $red;
+  margin-left: 10px;
+}
+
+.success {
+  color: $blue;
 }
 
 /* -------------- MEDIA QUERIES -------------- */
