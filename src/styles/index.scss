@@ -218,11 +218,9 @@ button.nav-link {
   }
 }
 
-/* iPad protrait and iPhone X landscape */
+/* iPad portrait and iPhone X landscape */
 @media only screen and (min-width: 768px) and (max-width: 812px) {
   .landing {
-    padding-left: 0;
-
     .portfolio {
       .portfolio-container {
         margin-left: 15px;
@@ -292,24 +290,24 @@ button.nav-link {
 
 @media only screen and (min-width: 768px) {
   .contact {
-    padding-bottom: 320px;
+    padding-bottom: 280px;
   }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   .contact {
-    padding-bottom: 70px;
+    padding-bottom: 40px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .contact {
-    padding-bottom: 200px;
+    padding-bottom: 160px;
   }
 }
 
 @media only screen and (min-width: 1600px) {
   .contact {
-    padding-bottom: 240px;
+    padding-bottom: 200px;
   }
 }

@@ -5,6 +5,7 @@ a:not(.img-link) {
   outline: none;
   position: relative;
   text-decoration: none;
+
   &:before {
     content: '';
     position: absolute;
@@ -17,10 +18,12 @@ a:not(.img-link) {
     transform: scaleX(0);
     transition: 0.25s linear;
   }
+
   &:hover:before {
     visibility: visible;
     transform: scaleX(1);
   }
+
   &:hover {
     text-decoration: none;
   }
@@ -52,6 +55,7 @@ button.nav-link {
   outline: none;
   padding: 0 10px;
   position: relative;
+
   &:before {
     content: '';
     position: absolute;
@@ -64,6 +68,7 @@ button.nav-link {
     transform: scaleX(0);
     transition: 0.25s linear;
   }
+
   &:hover:before {
     visibility: visible;
     transform: scaleX(1);
@@ -79,7 +84,7 @@ textarea.form-control {
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: 0 1px 2px $input-inset-shadow1 inset,
-    0 -1px 0 $input-inset-shadow2 inset;
+  0 -1px 0 $input-inset-shadow2 inset;
   transition: all 0.2s linear;
 
   &:focus,
