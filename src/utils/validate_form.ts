@@ -1,6 +1,11 @@
 import { FormError } from '../components/Contact';
 
-const ValidateForm = (name: string, email: string, message: string) => {
+const ValidateForm = (
+  name: string,
+  email: string,
+  message: string,
+  captchaValue: string | null | undefined
+) => {
   const errors: FormError = { msg: '', type: '' };
 
   if (!name) {
@@ -25,6 +30,13 @@ const ValidateForm = (name: string, email: string, message: string) => {
   if (!message) {
     errors.msg = "Ok I'll guess. You want to talk about...";
     errors.type = 'message';
+
+    return errors;
+  }
+
+  if (!captchaValue) {
+    errors.msg = 'Please check the captcha';
+    errors.type = 'captcha';
 
     return errors;
   }

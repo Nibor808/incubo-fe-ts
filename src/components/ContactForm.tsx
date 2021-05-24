@@ -1,13 +1,14 @@
 import ReCAPTCHA from 'react-google-recaptcha';
 import React from 'react';
+import { Errors } from './Contact';
 
 type ContactFormProps = {
-  validateValues: (event: React.FormEvent<HTMLFormElement>) => void;
+  sendMail: (event: React.FormEvent<HTMLFormElement>) => void;
   onChange: (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     name: string
   ) => void;
-  errors: errors;
+  errors: Errors;
   showResponse: () => JSX.Element | null;
   recaptchaRef:
     | string
@@ -16,27 +17,18 @@ type ContactFormProps = {
     | null
     | undefined;
   buttonText: string;
-  buttonClicked: boolean;
-};
-
-type errors = {
-  nameError: string;
-  nameErrorBorder: string;
-  emailError: string;
-  emailErrorBorder: string;
-  messageError: string;
-  messageErrorBorder: string;
+  isSending: boolean;
 };
 
 const ContactForm = (props: ContactFormProps) => {
   const {
-    validateValues,
+    sendMail,
     onChange,
     errors,
     showResponse,
     recaptchaRef,
     buttonText,
-    buttonClicked,
+    isSending,
   } = props;
 
   return (
@@ -44,7 +36,7 @@ const ContactForm = (props: ContactFormProps) => {
       <div className='col-1 col-md-1 sidebar' />
 
       <div className='col-sm-8 col-lg-6'>
-        <form onSubmit={validateValues} method='post' id='contact-form'>
+        <form onSubmit={sendMail} method='post' id='contact-form'>
           <div className='mb-3'>
             <label htmlFor='name' className='form-label'>
               Name
@@ -92,14 +84,18 @@ const ContactForm = (props: ContactFormProps) => {
               style={{ border: errors.messageErrorBorder }}
             />
           </div>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            size='normal'
-            sitekey='6LcNF-oUAAAAAEMyOzk5t1xUwJJgXSoVJfggilv2'
-          />
+
+          <div className='mb-3'>
+            <span className='error'>{errors.captchaError}</span>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              size='normal'
+              sitekey='6LcNF-oUAAAAAEMyOzk5t1xUwJJgXSoVJfggilv2'
+            />
+          </div>
 
           <div className='send-div'>
-            <button type='submit' disabled={buttonClicked}>
+            <button type='submit' disabled={isSending}>
               {buttonText}
             </button>
 

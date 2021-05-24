@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import validateForm from '../utils/validate_form';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -13,11 +13,11 @@ type Response = {
   };
 };
 
-type MailInfo = {
+export type MailInfo = {
   name: string;
   email: string;
   message: string;
-  recaptchaValue: string;
+  recaptchaValue: string | null | undefined;
 };
 
 export type FormError = {
@@ -25,13 +25,14 @@ export type FormError = {
   msg: string;
 };
 
-type Errors = {
+export type Errors = {
   nameError: string;
   nameErrorBorder: string;
   emailError: string;
   emailErrorBorder: string;
   messageError: string;
   messageErrorBorder: string;
+  captchaError: string;
 };
 
 const Contact = () => {
@@ -54,83 +55,108 @@ const Contact = () => {
     emailErrorBorder: '',
     messageError: '',
     messageErrorBorder: '',
+    captchaError: '',
   });
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [recaptchaValue, setRecaptchaValue] = useState<
+    string | null | undefined
+  >(null);
+
+  useEffect(() => {
+    const captchaValue = recaptchaRef.current?.getValue();
+    setRecaptchaValue(captchaValue);
+  }, [recaptchaValue]);
 
   const validateValues = (ev: React.FormEvent) => {
     ev.preventDefault();
 
-    const recaptchaValue = recaptchaRef.current?.getValue();
-    const formError: FormError = validateForm(name, email, message);
+    const captchaValue = recaptchaRef.current?.getValue();
+    setRecaptchaValue(captchaValue);
+
+    const formError: FormError = validateForm(
+      name,
+      email,
+      message,
+      captchaValue
+    );
 
     if (formError) {
       switch (formError.type) {
         case 'name':
-          return setErrors({
+          setErrors({
             ...errors,
             nameErrorBorder: ERROR_BORDER,
             nameError: formError.msg,
           });
+
+          return false;
         case 'email':
-          return setErrors({
+          setErrors({
             ...errors,
             emailErrorBorder: ERROR_BORDER,
             emailError: formError.msg,
           });
+
+          return false;
         case 'message':
-          return setErrors({
+          setErrors({
             ...errors,
             messageErrorBorder: ERROR_BORDER,
             messageError: formError.msg,
           });
+
+          return false;
+
+        case 'captcha':
+          setErrors({
+            ...errors,
+            captchaError: formError.msg,
+          });
+
+          return false;
         default:
         // Do Nothing
       }
     }
 
-    if (!recaptchaValue) {
-      return setResponse({
-        data: {
-          Type: 'error',
-          Message: 'Please check the captcha',
-        },
-      });
-    }
-
-    setButtonClicked(true);
     setResponse({ data: { Message: '', Type: '' } });
-
-    const info: MailInfo = {
-      name,
-      email,
-      message,
-      recaptchaValue,
-    };
-
-    sendMail(info);
+    clearError();
+    return true;
   };
 
-  const sendMail = async (info: MailInfo) => {
-    try {
-      const response = await axios.post('/api/sendmail', info);
+  const sendMail = async (ev: React.FormEvent) => {
+    ev.preventDefault();
 
-      setResponse(response);
-    } catch (err) {
-      setResponse({
-        data: {
-          Type: 'error',
-          Message: 'Oops! We broke it. Please try again later.',
-        },
-      });
-    } finally {
-      recaptchaRef.current?.reset();
-      setButtonClicked(false);
-      clearFormValues();
+    if (validateValues(ev)) {
+      const info: MailInfo = {
+        name,
+        email,
+        message,
+        recaptchaValue,
+      };
 
-      setTimeout(() => {
-        contactForm?.reset();
-        setResponse({ data: { Message: '', Type: '' } });
-      }, 3000);
+      try {
+        const response = await axios.post('/api/sendmail', info);
+        setIsSending(true);
+
+        setResponse(response);
+      } catch (err) {
+        setResponse({
+          data: {
+            Type: 'error',
+            Message: 'Oops! We broke it. Please try again later.',
+          },
+        });
+      } finally {
+        recaptchaRef.current?.reset();
+        setIsSending(false);
+        clearFormValues();
+
+        setTimeout(() => {
+          contactForm?.reset();
+          setResponse({ data: { Message: '', Type: '' } });
+        }, 3000);
+      }
     }
   };
 
@@ -154,6 +180,7 @@ const Contact = () => {
       emailError: '',
       messageErrorBorder: '',
       messageError: '',
+      captchaError: '',
     });
   };
 
@@ -174,20 +201,20 @@ const Contact = () => {
     clearError();
   };
 
-  const buttonText = buttonClicked ? 'Sending...' : 'Send';
+  const buttonText = isSending ? 'Sending...' : 'Send';
 
   return (
     <div data-testid='contact-div'>
       <Suspense fallback={<div>Loading...</div>}>
         <ErrorBoundary>
           <ContactForm
-            validateValues={validateValues}
+            sendMail={sendMail}
             onChange={handleChange}
             errors={{ ...errors }}
             showResponse={showResponse}
             recaptchaRef={recaptchaRef}
             buttonText={buttonText}
-            buttonClicked={buttonClicked}
+            isSending={isSending}
           />
         </ErrorBoundary>
       </Suspense>
