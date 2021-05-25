@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, { Suspense, useRef, useState } from 'react';
 import validateForm from '../utils/validate_form';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -17,7 +17,6 @@ export type MailInfo = {
   name: string;
   email: string;
   message: string;
-  recaptchaValue: string | null | undefined;
 };
 
 export type FormError = {
@@ -58,20 +57,11 @@ const Contact = () => {
     captchaError: '',
   });
   const [isSending, setIsSending] = useState(false);
-  const [recaptchaValue, setRecaptchaValue] = useState<
-    string | null | undefined
-  >(null);
-
-  useEffect(() => {
-    const captchaValue = recaptchaRef.current?.getValue();
-    setRecaptchaValue(captchaValue);
-  }, [recaptchaValue]);
 
   const validateValues = (ev: React.FormEvent) => {
     ev.preventDefault();
 
     const captchaValue = recaptchaRef.current?.getValue();
-    setRecaptchaValue(captchaValue);
 
     const formError: FormError = validateForm(
       name,
@@ -120,7 +110,7 @@ const Contact = () => {
     }
 
     setResponse({ data: { Message: '', Type: '' } });
-    clearError();
+    clearErrors();
     return true;
   };
 
@@ -132,7 +122,6 @@ const Contact = () => {
         name,
         email,
         message,
-        recaptchaValue,
       };
 
       try {
@@ -172,7 +161,7 @@ const Contact = () => {
     return null;
   };
 
-  const clearError = () => {
+  const clearErrors = () => {
     return setErrors({
       nameErrorBorder: '',
       nameError: '',
@@ -198,7 +187,7 @@ const Contact = () => {
     else if (type === 'email') setEmail(ev.target.value);
     else if (type === 'message') setMessage(ev.target.value);
 
-    clearError();
+    clearErrors();
   };
 
   const buttonText = isSending ? 'Sending...' : 'Send';

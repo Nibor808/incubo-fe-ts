@@ -14,8 +14,8 @@ const App: React.FC = () => {
     HTMLImageElement,
     MouseEvent
   > | null>(null);
-  const portfolioRef = useRef<HTMLLinkElement | null>(null);
-  const contactRef = useRef<HTMLLinkElement | null>(null);
+  const portfolioRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
   const [logoImg, setLogoImg] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
