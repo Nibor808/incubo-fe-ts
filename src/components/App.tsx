@@ -38,6 +38,14 @@ const App: React.FC = () => {
     }
   };
 
+  const toTop = (ev: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    ev.preventDefault();
+
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+  };
+
   const toPortfolio = (ev: React.MouseEvent<HTMLButtonElement>) => {
     ev.preventDefault();
 
@@ -82,7 +90,13 @@ const App: React.FC = () => {
   return (
     <React.Fragment>
       {showModal()},
-      <Header key='a2' toContact={toContact} toPortfolio={toPortfolio} />,
+      <Header
+        key='a2'
+        toContact={toContact}
+        toPortfolio={toPortfolio}
+        toTop={toTop}
+      />
+      ,
       <section key='a3' className='landing container'>
         <article className='about'>
           <div className='about-container'>

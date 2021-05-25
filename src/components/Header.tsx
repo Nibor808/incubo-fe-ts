@@ -8,21 +8,14 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 type HeaderProps = {
   toPortfolio: (ev: React.MouseEvent<HTMLButtonElement>) => void;
   toContact: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+  toTop: (ev: React.MouseEvent<HTMLImageElement, MouseEvent>) => void;
 };
 
-const Header = ({ toPortfolio, toContact }: HeaderProps) => {
+const Header = ({ toPortfolio, toContact, toTop }: HeaderProps) => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [modeIcon, setModeIcon] = useState<JSX.Element>(
     <FontAwesomeIcon icon={faSun} />
   );
-
-  const toTop = (ev: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-    ev.preventDefault();
-
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 50);
-  };
 
   useEffect(() => {
     if (darkMode) {
@@ -62,12 +55,20 @@ const Header = ({ toPortfolio, toContact }: HeaderProps) => {
           <div className='collapse navbar-collapse' id='content'>
             <ul className='navbar-nav mr-auto'>
               <li className='nav-item'>
-                <button className='nav-link' onClick={toPortfolio}>
+                <button
+                  className='nav-link'
+                  onClick={toPortfolio}
+                  data-testid='portfolio-link'
+                >
                   Portfolio
                 </button>
               </li>
               <li className='nav-item'>
-                <button className='nav-link' onClick={toContact}>
+                <button
+                  className='nav-link'
+                  onClick={toContact}
+                  data-testid='contact-link'
+                >
                   Contact
                 </button>
               </li>
@@ -87,6 +88,7 @@ const Header = ({ toPortfolio, toContact }: HeaderProps) => {
                   type='checkbox'
                   className='form-check-input'
                   id='dark-light-toggle'
+                  data-testid='dark-light-toggle'
                   onClick={() => setDarkMode(!darkMode)}
                 />
                 <label
