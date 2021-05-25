@@ -20,17 +20,15 @@ type ContactFormProps = {
   isSending: boolean;
 };
 
-const ContactForm = (props: ContactFormProps) => {
-  const {
-    sendMail,
-    onChange,
-    errors,
-    showResponse,
-    recaptchaRef,
-    buttonText,
-    isSending,
-  } = props;
-
+const ContactForm = ({
+  sendMail,
+  onChange,
+  errors,
+  showResponse,
+  recaptchaRef,
+  buttonText,
+  isSending,
+}: ContactFormProps) => {
   return (
     <div className='row' data-testid='contact-form'>
       <div className='col-1 col-md-1 sidebar' />

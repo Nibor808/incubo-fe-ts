@@ -38,7 +38,7 @@ const Modal: React.FC<ModalProps> = ({
   setIsOpen,
   headerText,
   srcText,
-}) => {
+}: ModalProps) => {
   return (
     <ReactModal
       appElement={document.getElementById('root') as HTMLElement}

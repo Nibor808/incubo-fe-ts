@@ -10,8 +10,7 @@ type HeaderProps = {
   toContact: (ev: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Header = (props: HeaderProps) => {
-  const { toPortfolio, toContact } = props;
+const Header = ({ toPortfolio, toContact }: HeaderProps) => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [modeIcon, setModeIcon] = useState<JSX.Element>(
     <FontAwesomeIcon icon={faSun} />
