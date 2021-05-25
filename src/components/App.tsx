@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Header from './components/Header';
-import About from './components/About';
-import Contact from './components/Contact';
-import PortfolioList from './components/PortfolioList';
-import { list2016 } from './utils/list_2016';
-import { list2017 } from './utils/list_2017';
-import { list2020 } from './utils/list_2020';
-import Modal from './components/Modal';
+import Header from './Header';
+import About from './About';
+import Contact from './Contact';
+import PortfolioList from './PortfolioList';
+import { list2016 } from '../utils/list_2016';
+import { list2017 } from '../utils/list_2017';
+import { list2020 } from '../utils/list_2020';
+import Modal from './Modal';
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -90,7 +90,11 @@ const App: React.FC = () => {
           </div>
         </article>
 
-        <article className='portfolio' ref={portfolioRef}>
+        <article
+          className='portfolio'
+          ref={portfolioRef}
+          data-testid='portfolio'
+        >
           <div className='header-container'>
             <div className='row'>
               <div className='col-12'>
@@ -132,7 +136,7 @@ const App: React.FC = () => {
           </div>
         </article>
 
-        <article className='contact' ref={contactRef}>
+        <article className='contact' ref={contactRef} data-testid='contact'>
           <div className='header-container'>
             <div className='row'>
               <div className='col-12'>
