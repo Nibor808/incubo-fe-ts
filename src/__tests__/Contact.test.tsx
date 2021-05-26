@@ -1,5 +1,5 @@
-import ValidateForm from './utils/validate_form';
-import Contact from './components/Contact';
+import ValidateForm from '../utils/validate_form';
+import Contact from '../components/Contact';
 import { render } from '@testing-library/react';
 import axios, { AxiosResponse } from 'axios';
 
